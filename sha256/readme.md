@@ -1,0 +1,4 @@
+Goroutines.
+Waitgroups.
+Channels.
+Mutexes.

@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<script src="wasm_exec.js"></script>
+	<script src="crypto3.js"></script>
+
+	<script type="module">
+		const go = new Go();
+		WebAssembly.instantiateStreaming(fetch("main.wasm"), go.importObject).then((result) => {
+			go.run(result.instance);
+		});
+
+		const start = Date.now();
+
+		try {
+			var hashThings = (myString) => {
+				const myBitArray = sjcl.hash.sha256.hash(myString)
+				const myHash = sjcl.codec.hex.fromBits(myBitArray)
+
+				console.log(myHash)
+			}
+
+
+			hashThings('hashThisString')
+			hashThings('hashThatThing')
+			hashThings('1123544884451484454145451154544')
+			hashThings('Channels are a typed conduit through which you can send and receive values with the channel operator.')
+			hashThings('1')
+			hashThings('95403d97179341f258a6e903b53bcdba6024e00f0c9eeea86cecf81b15f75f93')
+		} finally {
+			const end = Date.now();
+			console.log(`Execution time Final: ${end - start} ms`);
+		}
+
+	</script>
+</head>
+
+<body></body>
+
+</html>
