@@ -23,3 +23,4 @@ go.work
 go.work.sum
 
 server/index.html
+wasm_exec.js
